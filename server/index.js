@@ -51,6 +51,25 @@ app.get("/todos/:id",async (req,res)=>{
     console.error(err.message)
     }
 })
+
+//LOGIN USER
+app.post('/login', async (req, res) => {
+    //El query na mas, con unos errores o outcomes posibles
+    const { username, password } = req.body;
+    try {
+      const result = await pool.query('SELECT * FROM user WHERE username = $1 AND password = $2', [username, password]);
+      if (result.rows.length === 1) {
+        res.status(200).json({ message: 'Inicio de sesión exitoso' });
+      } else {
+        res.status(401).json({ message: 'Nombre de usuario o contraseña incorrectos' });
+      }
+    } catch (error) {
+      console.error('Error al realizar la consulta:', error);
+      res.status(500).json({ message: 'Error interno del servidor' });
+    }
+  });
+  
+
 //UPDUATE A TODO
 app.put("/todos/:id",async (req,res)=>{
     try {
