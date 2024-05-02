@@ -8,7 +8,7 @@ const ListTodos = ()=>{
 const deleteTodo = async(id)=>{
     try {
         //templete strings (``) allows you tu put variables inside your strings
-        const deleteTodo = await fetch(`http://localhost:5000/todos/${id}`,{method:"DELETE"})
+        const deleteTodo = await fetch(`http://localhost:3001/todos/${id}`,{method:"DELETE"})
         //.filter it will make appear does todos that fit the condition
  setTodos(todos.filter(todo=>todo.todo_id !== id))
     } catch (err) {
@@ -18,7 +18,7 @@ const deleteTodo = async(id)=>{
 
     const getTodos = async()=>{
         try {
-            const response = await fetch("http://localhost:5000/todos")
+            const response = await fetch("http://localhost:3001/todos")
             const jsonData = await response.json()
 
             setTodos(jsonData);
@@ -40,12 +40,7 @@ const deleteTodo = async(id)=>{
       </tr>
     </thead>
     <tbody>
-        {/*
-      <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-</tr>*/}
+x§
       {todos.map(todo =>(
         <tr key ={todo.todo_id}>
             <td>{todo.description}</td>
